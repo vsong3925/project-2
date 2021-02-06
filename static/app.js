@@ -15,53 +15,23 @@ d3.json("/home_values").then(data => {
     // console.log(result1)
     
     // select data for home values and years
-    
-    // result1.forEach(element => {
-    //     var years_county1 = Object.keys(element).slice(5, 305)
-    //     var values_county1 = Object.values(element).slice(5, 305);
-    // })
-
-    // result2.forEach(element => {
-    //     var years_county2 = Object.keys(element).slice(5, 305)
-    //     var values_county2 = Object.values(element).slice(5, 305);
-    // })
-
-
-    function years1(result1) {
-        result1.forEach(element => {
-            var years_county1 = Object.keys(element).slice(5, 305)
-            return years_county1;
-        })
+    for (let result of result1) {
+        var years_county1 = Object.keys(result).slice(5, 305)
+        var values_county1 = Object.values(result).slice(5, 305);
     }
 
-    function values1(result1) {
-        result1.forEach(element => {
-            var values_county1 = Object.values(element).slice(5, 305);
-            return values_county1
-        })
+    for (let result of result2) {
+        var years_county2 = Object.keys(result).slice(5, 305)
+        var values_county2 = Object.values(result).slice(5, 305);
     }
 
+    console.log(years_county1)
 
-    function years2(result2) {
-        result2.forEach(element => {
-            var years_county2 = Object.keys(element).slice(5, 305)
-            return years_county2;
-        })
-    }
-
-    function values2(result2) {
-        result2.forEach(element => {
-            var values_county2 = Object.values(element).slice(5, 305);
-            return values_county2
-        })
-    }
-
-    
     // Plotly
     trace1 = {
         type: 'scatter',
-        x: years1(result1),
-        y: values1(result1),
+        x: years_county1,
+        y: values_county1,
         mode: 'lines',
         name: 'Red',
         line: {
@@ -72,8 +42,8 @@ d3.json("/home_values").then(data => {
       
       trace2 = {
         type: 'scatter',
-        x: years2(result2),
-        y: values2(result2),
+        x: years_county2,
+        y: values_county2,
         mode: 'lines',
         name: 'Blue',
         line: {
@@ -91,16 +61,9 @@ d3.json("/home_values").then(data => {
       
       Plotly.newPlot('myDiv', data, layout);
     
-    
-   
-    
-    
 
-
-
-
-    // // array of region names
+    // // an array of all the counties names
     // var regionName = data.map(r => r.RegionName)
 
 
-})
+});
